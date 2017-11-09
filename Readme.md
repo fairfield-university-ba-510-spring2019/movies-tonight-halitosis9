@@ -12,9 +12,9 @@ __You are encouraged to collaborate with your peers.__ However, you are also res
 3. **Now use Excel (yes!) to inspect the `movies.xls` file in this folder.**   
 ![Movies Tonight Data in Excel](img/img1.png)  
 The file has denormalized data in three tabs/sheets:
-  * **Format 1** is a classic 1960's era mainframe format, designed to minimize the number of characters used in the file without using any numerical ids (which can hard to debug by hand). Each record is on a line and is one of three types (M, S, and T). Depending on the record type, the last field may be repeated if there are multiple values, making the # of fields variable (even when the record type doesn’t change).
-  * **Format 2** is a slightly different arrangement, again with three record types. This time the repeated fields are split into separate records. To conserve characters in the file, fields are left blank if the values are the same in the record above it.
-  * **Format 3** combines all three record types into a single record, at the cost of being extremely verbose and redundant. Notice how many rows the sheet has! Each record represents a single **movie credit* within a single movie showing at a given time at a single theater. (Read that three times to be sure you understand before going on.)     
+    * **Format 1** is a classic 1960's era mainframe format, designed to minimize the number of characters used in the file without using any numerical ids (which can hard to debug by hand). Each record is on a line and is one of three types (M, S, and T). Depending on the record type, the last field may be repeated if there are multiple values, making the # of fields variable (even when the record type doesn’t change).
+    * **Format 2** is a slightly different arrangement, again with three record types. This time the repeated fields are split into separate records. To conserve characters in the file, fields are left blank if the values are the same in the record above it.
+    * **Format 3** combines all three record types into a single record, at the cost of being extremely verbose and redundant. Notice how many rows the sheet has! Each record represents a single **movie credit* within a single movie showing at a given time at a single theater. (Read that three times to be sure you understand before going on.)     
   Take a moment to think about which of the three Formats you might want to use if you were sending 10 billion rows of data over the internet. Which would you choose and why?
 4. **Add a new section called "Normalization Analysis."**  
 Use a second-level Markdown header for the section. We're going use Format 3 for our analysis, moving from 1NF to BCNF. While highly redundant, Format 3 is the only one of the three formats that is compatible with the relational data model. Formats 1 and 2 are not compatible with the relational data model.
@@ -68,3 +68,11 @@ It should appear in your project folder in Atom.
 20. **Rename the file to just `MoviesTonightERD.png`**. You can do this in Atom if you like.
 21. **Link to the diagram in your Markdown file.** It belongs in the last section.
 22. **Save, commit, and push your work.** Use the Commit Summary Comment 'Completed Part 1'.
+
+## Part 2: SQL DDL
+
+## Part 3: SQL DML
+
+## Part 4: SQL Select Queries
+
+## Part 5: Python Integration
