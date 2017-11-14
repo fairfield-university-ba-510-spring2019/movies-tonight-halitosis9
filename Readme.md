@@ -15,7 +15,7 @@ The file has denormalized data in three tabs/sheets:
     * **Format 1** is a classic 1960's era mainframe format, designed to minimize the number of characters used in the file without using any numerical ids (which can hard to debug by hand). Each record is on a line and is one of three types (M, S, and T). Depending on the record type, the last field may be repeated if there are multiple values, making the # of fields variable (even when the record type doesn’t change).
     * **Format 2** is a slightly different arrangement, again with three record types. This time the repeated fields are split into separate records. To conserve characters in the file, fields are left blank if the values are the same in the record above it.
     * **Format 3** combines all three record types into a single record, at the cost of being extremely verbose and redundant. Notice how many rows the sheet has! Each record represents a single **movie credit* within a single movie showing at a given time at a single theater. (Read that three times to be sure you understand before going on.)     
-Take a moment to think about which of the three Formats you might want to use if you were sending 10 billion rows of data over the internet. Which would you choose and why?
+Take a moment to think about which of the three Formats you might want to use if you were sending 10 billion rows of data over the internet. Which would you choose and why?  
 4. **Add a new section called "Normalization Analysis."**  
 Use a second-level Markdown header for the section. We're going use Format 3 for our analysis, moving from 1NF to BCNF. While highly redundant, Format 3 is the only one of the three formats that is compatible with the relational data model. Formats 1 and 2 are not compatible with the relational data model.
 5. **Add a (level 3) subsection called "1NF Conversion."**  
@@ -70,9 +70,25 @@ It should appear in your project folder in Atom.
 22. **Save, commit, and push your work.** Use the Commit Summary Comment 'Completed Part 1'.
 
 ## Part 2: SQL DDL
+1. **Create a new MySQL database.** In MySQL Workbench open a new SQL script called `MoviesTonightDDL.sql`to create the "movies_tonight" database. You will need to open a `new query tab` and then `save as` to give the script a name. Be sure to write the file to this repository.
+2. **Use SQL Create Table commands to implement the table designs you created in part 1.** Take care with your data types! (You do not need to populate them yet. That’s Part 3.)
+3. **Use SQL ALTER TABLE statements to add the foreign key constraints from your ERD.** Take care that each constraint has to have a unique name.
+4. **Save, commit, and push your work to GitHub.** Use the commit summary comment "Completed Part 2".
 
 ## Part 3: SQL DML
+1. **Run the `DATASHEET.sql` file in this repository to import the source data into your database.** You will get an error if you do not have a “movies_tonight” database. The query will create and populate a table called `DATASHEET` that matches the Format 3 sheet from Part 1.  
+2. **Populate the tables with data.** Create a new `MoviesTonightDML.sql` file. Then use `INSERT … SELECT` commands to populate the tables.
+    * You may need to wipe a table clean of all data if you mess up an `INSERT` statement; use `DELETE FROM <<table-name>> WHERE ID>0;` to delete all rows.
+    * The tables for strong entities are pretty easy because there are no FKs to worry about. Just make sure you use `DISTINCT` so you don’t get any duplicates.
+    * The other tables with FKs on them are trickier. You will likely need to use table joins on the DATASHEET MTitle, TName, and CName columns to get them to work. Again, be sure to use `DISTINCT` to avoid duplicates.  
+3. **Check your work.** There are 9 theaters, 23 movies, 152 artists, 131 shows, and 161 credits.
+4. **Now check the source data.** There are actually 13 duplicate rows in the original source data! Can you spot them? Write a SQL query that counts how many times each (MTitle, TName, Showtime, CCode, and CName) appears. Which ones appear more than once?
+4. **Drop the `DATASHEET` table.** We don't need it anymore. You can do it in SQL or just right-click on the table name in the SCHEMAS panel and `Drop Table`.
+4. **Save, commit, and push your work to GitHub.** Use the commit summary comment "Completed Part 3".
 
 ## Part 4: SQL Select Queries
+1. **Open the `MoviesTonightPart4.ipynb` in Jupyter Notebook.**  There are several queries described. Implement each using SQL select queries as indicated.
+2. **Save, commit, and push your work to GitHub.** Use the commit summary comment "Completed Part 4".
 
 ## Part 5: Python Integration
+Coming soon.
