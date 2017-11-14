@@ -53,37 +53,3 @@ def imdb_import_movie(mid=None,mtitle=None,year=None):
     movie = json_normalize(imdb_movie)
 
     return {'movie':movie,'cast':cast}
-
-def imdb_find_movie(mtitle,year=None)
-    print(mtitle)
-    qry = {'title':mtitle,'year':year} if year is not None and int(year)>1878 else {'title':mtitle}
-    url = 'http://www.theimdbapi.org/api/find/movie?'+ urllib.parse.urlencode(qry)
-    try:
-        imdb_movie = requests.get(url).json()[0] # always use the first movie found
-    except:
-        # failed IMDB lookup
-        raise ValueError("No movie with the given mid could be found")
-
-    imdb_id = imdb_movie['imdb_id']
-    cast = imdb_movie['cast']
-    del imdb_movie['cast']
-    movie = imdb_movie
-
-    return {'imdb_id':imdb_id,'movie':movie,'cast':cast}
-
-def imdb_find_movies(movie_queries):
-    movies = []
-    casts = []
-    for q in movie_queries:
-        if isinstance(q,str):
-            imdb_data = imdb_find_movie(q)
-        elif isinstance(q,dict):
-            imdb_data = imdb_find_movie(q['mtitle'],q['year'])
-        else:
-            raise ValueError("Movie queries must be either strings or dicts")
-
-        imdb_id = imdb_data['imdb_id']
-        movies[imdb_id] = imdb_data['movie']
-        casts[imdb_id] = imdb_data['cast']
-
-    return {'movies':movies,'casts':casts}
