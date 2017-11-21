@@ -70,7 +70,7 @@ It should appear in your project folder in Atom.
 22. **Save, commit, and push your work.** Use the Commit Summary Comment 'Completed Part 1'.
 
 ## Part 2: SQL DDL
-1. **Create a new MySQL database.** In MySQL Workbench open a new SQL script called `MoviesTonightDDL.sql`to create the "movies_tonight" database. You will need to open a `new query tab` and then `save as` to give the script a name. Be sure to write the file to this repository.
+1. **Create a new MySQL database.** In MySQL Workbench open a new SQL script called `MoviesTonightDDL.sql`to create the "movies_tonight" database. You will need to open a `new query tab` and then `save as` to give the script a name. Be sure to write the file to this repository. The first lines of the file need to be to CREATE and USE the new database.
 2. **Use SQL Create Table commands to implement the table designs you created in part 1.** Take care with your data types! (You do not need to populate them yet. That’s Part 3.)
 3. **Use SQL ALTER TABLE statements to add the foreign key constraints from your ERD.** Take care that each constraint has to have a unique name.
 4. **Save, commit, and push your work to GitHub.** Use the commit summary comment "Completed Part 2".
@@ -78,7 +78,7 @@ It should appear in your project folder in Atom.
 ## Part 3: SQL DML
 1. **Run the `DATASHEET.sql` file in this repository to import the source data into your database.** You will get an error if you do not have a “movies_tonight” database. The query will create and populate a table called `DATASHEET` that matches the Format 3 sheet from Part 1.  
 2. **Populate the tables with data.** Create a new `MoviesTonightDML.sql` file. Then use `INSERT … SELECT` commands to populate the tables.
-    * You may need to wipe a table clean of all data if you mess up an `INSERT` statement; use `DELETE FROM <<table-name>> WHERE ID>0;` to delete all rows.
+    * You may need to wipe a table clean of all data if you mess up an `INSERT` statement; use `DELETE FROM <<table-name>> WHERE ID>0;` to delete all rows. Alternatively, you can use `TRUNCATE <<table-name>>` to delete all data and reset the auto_increment counter.
     * The tables for strong entities are pretty easy because there are no FKs to worry about. Just make sure you use `DISTINCT` so you don’t get any duplicates.
     * The other tables with FKs on them are trickier. You will likely need to use table joins on the DATASHEET MTitle, TName, and CName columns to get them to work. Again, be sure to use `DISTINCT` to avoid duplicates.  
 3. **Check your work.** There are 9 theaters, 23 movies, 152 artists, 131 shows, and 161 credits.
