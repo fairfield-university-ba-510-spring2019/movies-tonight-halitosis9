@@ -42,11 +42,12 @@ def imdb_import_movie(mid=None,mtitle=None,year=None):
         print(mtitle)
         qry = {'title':mtitle,'year':year} if year is not None and int(year)>1878 else {'title':mtitle}
         url = 'http://www.theimdbapi.org/api/find/movie?'+ urllib.parse.urlencode(qry)
+        print(url)
         try:
             imdb_movie = requests.get(url).json()[0] # always use the first movie found
         except:
             # failed IMDB lookup
-            raise ValueError("No movie with the given mid could be found")
+            raise ValueError("No movie with the given mtitle could be found")
 
     cast = pd.DataFrame(imdb_movie['cast'])
     del imdb_movie['cast']
